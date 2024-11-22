@@ -5,7 +5,7 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? currentRoute = ModalRoute.of(context)?.settings.name;
+    final String? currentRoute = ModalRoute.of(context)?.settings.name;
 
     return Container(
       color: Colors.grey[850],
@@ -14,31 +14,31 @@ class Footer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _buildNavItem(
-            Icons.search,
-            "검색",
-            context,
-            '/search',
+            icon: Icons.search,
+            label: "검색",
+            context: context,
+            route: '/search',
             isSelected: currentRoute == '/search',
           ),
           _buildNavItem(
-            Icons.language,
-            "헤드라인",
-            context,
-            '/',
+            icon: Icons.language,
+            label: "헤드라인",
+            context: context,
+            route: '/',
             isSelected: currentRoute == '/',
           ),
           _buildNavItem(
-            Icons.thumb_up_outlined,
-            "추천",
-            context,
-            '/recommend',
+            icon: Icons.thumb_up_outlined,
+            label: "추천",
+            context: context,
+            route: '/recommend',
             isSelected: currentRoute == '/recommend',
           ),
           _buildNavItem(
-            Icons.star_border,
-            "My",
-            context,
-            '/my',
+            icon: Icons.star_border,
+            label: "My",
+            context: context,
+            route: '/my',
             isSelected: currentRoute == '/my',
           ),
         ],
@@ -46,27 +46,28 @@ class Footer extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem(
-    IconData icon,
-    String label,
-    BuildContext context,
-    String route, {
-    bool isSelected = false,
+  Widget _buildNavItem({
+    required IconData icon,
+    required String label,
+    required BuildContext context,
+    required String route,
+    required bool isSelected,
   }) {
-    bool isHovered = false;
+    final ValueNotifier<bool> isHovered = ValueNotifier(false);
 
-    return StatefulBuilder(
-      builder: (context, setState) {
-        return MouseRegion(
-          onEnter: (_) => setState(() => isHovered = true),
-          onExit: (_) => setState(() => isHovered = false),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, route);
-            },
+    return MouseRegion(
+      onEnter: (_) => isHovered.value = true,
+      onExit: (_) => isHovered.value = false,
+      child: ValueListenableBuilder<bool>(
+        valueListenable: isHovered,
+        builder: (context, hover, child) {
+          final bool isActive = isSelected || hover;
+
+          return GestureDetector(
+            onTap: () => Navigator.pushNamed(context, route),
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 25),
-              decoration: (isSelected || isHovered)
+              decoration: isActive
                   ? BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: Colors.white38,
@@ -78,26 +79,22 @@ class Footer extends StatelessWidget {
                   Icon(
                     icon,
                     size: 20,
-                    color: (isSelected || isHovered)
-                        ? Colors.white
-                        : Colors.white70,
+                    color: isActive ? Colors.white : Colors.white70,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     label,
                     style: TextStyle(
                       fontSize: 14,
-                      color: (isSelected || isHovered)
-                          ? Colors.white
-                          : Colors.white70,
+                      color: isActive ? Colors.white : Colors.white70,
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
