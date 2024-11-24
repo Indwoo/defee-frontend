@@ -10,7 +10,6 @@ final routes = {
   '/': (BuildContext context) => Headline(),
   '/login': (BuildContext context) => Login(),
   '/signup': (BuildContext context) => Signup(),
-  '/search': (BuildContext context) => Headline(),
   '/search': (BuildContext context) => Search(),
   '/searchresult': (BuildContext context) => SearchResult(),
   '/recommend': (BuildContext context) => Headline(),
