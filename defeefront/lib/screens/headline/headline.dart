@@ -3,8 +3,6 @@ import 'package:defeefront/screens/headline/widgets/other_post.dart';
 import 'package:defeefront/screens/headline/widgets/popular.dart';
 import 'package:defeefront/screens/headline/widgets/slide_post.dart';
 import 'package:defeefront/widgets/basescreen.dart';
-import 'package:defeefront/widgets/footer.dart';
-import 'package:defeefront/widgets/header.dart';
 import 'package:flutter/material.dart';
 
 class Headline extends StatelessWidget {
