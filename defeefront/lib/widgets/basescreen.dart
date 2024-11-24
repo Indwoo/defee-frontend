@@ -1,3 +1,5 @@
+import 'package:defeefront/widgets/footer.dart';
+import 'package:defeefront/widgets/header.dart';
 import 'package:flutter/material.dart';
 
 class BaseScreen extends StatelessWidget {
@@ -8,12 +10,11 @@ class BaseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("defee{ }"),
-      ),
+      appBar: Header(),
       body: SingleChildScrollView(
         child: child,
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }
