@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/footer.dart';
 import '../../widgets/header.dart';
+import '../../screens/search/widgets/search_bar.dart';
 
 class Search extends StatefulWidget { // StatefulWidget으로 변경
   const Search({super.key});
@@ -21,13 +22,7 @@ class _SearchState extends State<Search> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
-              decoration: InputDecoration(
-                labelText: '리액트',
-                prefixIcon: Icon(Icons.search),
-                suffixIcon: Icon(Icons.clear),
-              ),
-            ),
+            MainSearchBar(),
 
             SizedBox(height: 16.0),
 
