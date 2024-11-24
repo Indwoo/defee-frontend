@@ -34,7 +34,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 Text(
-                  "defeee;",
+                  "defee;",
                   style: TextStyle(
                     fontSize: 30,
                     color: Color.fromARGB(255, 0, 38, 134),
