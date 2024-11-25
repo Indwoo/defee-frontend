@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:defeefront/widgets/basic_modal.dart';
 
 class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -18,20 +19,31 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         children: [
           Expanded(
-            child: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: Text(
-                url,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.black,
+            child: GestureDetector(
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: url));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text('URL이 복사되었습니다'),
+                    duration: const Duration(seconds: 3),
+                  ),
+                );
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(12.0),
                 ),
-                overflow: TextOverflow.ellipsis,
+                child: Text(
+                  url,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.black,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
           ),
