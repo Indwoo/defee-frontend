@@ -49,7 +49,12 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           const SizedBox(width: 8),
           IconButton(
-            icon: const Icon(Icons.share),
+            icon: Image.asset(
+              'assets/icons/share.png',
+              width: 24,
+              height: 24,
+              fit: BoxFit.contain,
+            ),
             onPressed: () {
               // 공유 로직
             },
