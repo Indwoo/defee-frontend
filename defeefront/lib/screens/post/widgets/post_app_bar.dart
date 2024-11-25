@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart'; // share_plus 패키지 추가
 import 'package:defeefront/widgets/basic_modal.dart';
 
 class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -56,7 +57,8 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
               fit: BoxFit.contain,
             ),
             onPressed: () {
-              // 공유 로직
+              // Share 기능
+              _shareUrl(context, url);
             },
           ),
           IconButton(
@@ -111,6 +113,18 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
     );
+  }
+
+  // 공유 로직
+  void _shareUrl(BuildContext context, String url) {
+    Share.share('페이지 공유: \n $url').catchError((error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('공유에 실패했습니다.'),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    });
   }
 
   Widget _folderIcon(String label) {
