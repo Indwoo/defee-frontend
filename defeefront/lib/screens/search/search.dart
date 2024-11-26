@@ -28,8 +28,6 @@ class _SearchState extends State<Search> {
 
             SizedBox(height: 16.0),
 
-
-
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
@@ -65,7 +63,8 @@ class _SearchState extends State<Search> {
                 }).toList(),
               ),
             ),
-            SizedBox(height: 16.0), // 간격 추가
+
+            SizedBox(height: 16.0),
 
             // 내 키워드 드롭다운
             Container(
@@ -105,7 +104,7 @@ class _SearchState extends State<Search> {
                 }).toList(),
               ),
             ),
-            SizedBox(height: 16.0), // 간격 추가
+            SizedBox(height: 16.0),
 
             // 선택된 키워드 칩들
             Container(
@@ -189,7 +188,7 @@ class _SearchState extends State<Search> {
                   IconButton(
                     icon: Icon(Icons.add, color: Color(0xff002686)), // '+' 아이콘
                     onPressed: () {
-                      // '+' 아이콘 클릭 시 동작을 여기에 추가
+                      // TBD : '+' 아이콘 클릭
                     },
                     color: Color(0xff002686), // 아이콘 배경색
                     padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0), // 패딩 조정
@@ -199,14 +198,14 @@ class _SearchState extends State<Search> {
               ),
             ),
 
-            SizedBox(height: 16.0), // 간격 추가
+            SizedBox(height: 16.0),
 
             Divider(
               thickness: 1.0,
               color: Colors.grey,
             ),
 
-            SizedBox(height: 16.0), // 간격 추가
+            SizedBox(height: 16.0),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -217,7 +216,7 @@ class _SearchState extends State<Search> {
                 ),
                 TextButton(
                   onPressed: () {
-                    // 전체 삭제 버튼 클릭 시 동작을 여기에 추가
+                    // TBD : 전체 삭제 버튼 클릭
                   },
                   child: Text(
                     '전체 삭제',
