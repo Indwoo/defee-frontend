@@ -90,11 +90,14 @@ class _SearchState extends State<Search> {
                             runSpacing: 12.0, // 칩 수직 간격
                             children: [
                               ...popularKeywords.map((keyword) {
+                                bool isSelected = selectedKeyword == keyword; // 클릭된 키워드 확인
                                 return GestureDetector(
                                   onTap: () {
                                     // 클릭 시 검색바에 키워드 설정
-                                    searchBarKey.currentState
-                                        ?.setKeyword(keyword);
+                                    searchBarKey.currentState?.setKeyword(keyword);
+                                    setState(() {
+                                      selectedKeyword = keyword; // 선택된 키워드 업데이트
+                                    });
                                   },
                                   child: Chip(
                                     label: Text(
@@ -105,7 +108,7 @@ class _SearchState extends State<Search> {
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 12.0,
                                         vertical: 10.0), // 패딩 조정
-                                    backgroundColor: Color(0xffBABABA), // 칩 배경색
+                                    backgroundColor: isSelected? Color(0xff002686) : Color(0xffBABABA), // 칩 배경색
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15.0),
                                       // 모서리 둥글게
