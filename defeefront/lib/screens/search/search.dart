@@ -12,8 +12,14 @@ class Search extends StatefulWidget { // StatefulWidget으로 변경
 }
 
 class _SearchState extends State<Search> {
-  String? selectedKeyword;
-  String? selectedMyKeyword;
+  String? selectedKeyword;  //인기 키워드 선택 여부
+  String? selectedMyKeyword;  //내 키워드 선택 여부
+  bool showPopularKeywords = false; // 인기 키워드 칩 표시 여부
+  bool showMyKeywords = false; // 내 키워드 칩 표시 여부
+
+  // Dummy Data
+  final List<String> popularKeywords = ['키워드1', '키워드2', '키워드3'];
+  final List<String> myKeywords = ['내 키워드1', '백엔드 내 키워드2', '내꺼 키워드3', '내 키워드4'];
 
   @override
   Widget build(BuildContext context) {
@@ -28,163 +34,52 @@ class _SearchState extends State<Search> {
 
             SizedBox(height: 16.0),
 
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xff002686), // 배경 색상
-                borderRadius: BorderRadius.circular(8.0), // 모서리 둥글게
-              ),
-              child: DropdownButton<String>(
-                padding : EdgeInsets.fromLTRB(15, 0, 0, 0),
-                hint: Text(
-                  '인기 키워드',
-                  style: TextStyle(color: Colors.white),
+            // 인기 키워드 드롭다운
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  showPopularKeywords = !showPopularKeywords; // 클릭 시 표시 여부 토글
+                });
+              },
+              child: Container(
+                padding: EdgeInsets.all(12.0),
+                decoration: BoxDecoration(
+                  color: Color(0xff002686),
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-                value: selectedKeyword,
-                dropdownColor: Color(0xff002686),
-                icon: Icon(Icons.arrow_drop_down, color: Colors.white), // 오른쪽 아이콘
-                isExpanded: true, // 드롭다운 버튼 전체 너비 사용
-                underline: SizedBox(), // 밑줄 제거
-                onChanged: (String? newValue) {
-                  selectedKeyword = newValue; // 상태 관리 없음
-                },
-                items: <String>['키워드1', '키워드2', '키워드3']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        value,
-                        style: TextStyle(color: Colors.white), // 텍스트 색상
-                      ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '인기 키워드',
+                      style: TextStyle(color: Colors.white),
                     ),
-                  );
-                }).toList(),
+                    Icon(Icons.arrow_drop_down, color: Colors.white),
+                  ],
+                ),
               ),
             ),
-
-            SizedBox(height: 16.0),
-
-            // 내 키워드 드롭다운
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xff002686), // 배경 색상
-                borderRadius: BorderRadius.circular(8.0), // 모서리 둥글게
-              ),
-              child: DropdownButton<String>(
-                padding : EdgeInsets.fromLTRB(15, 0, 0, 0),
-                hint: Text(
-                  '내 키워드',
-                  style: TextStyle(color: Colors.white),
-                ),
-                value: selectedMyKeyword,
-                dropdownColor: Color(0xff002686),
-                icon: Icon(Icons.arrow_drop_down, color: Colors.white), // 오른쪽 아이콘
-                isExpanded: true, // 드롭다운 버튼 전체 너비 사용
-                underline: SizedBox(), // 밑줄 제거
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedMyKeyword = newValue;
-                  });
-                },
-                items: <String>['내 키워드1', '내 키워드2']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        value,
-                        style: TextStyle(color: Colors.white), // 텍스트 색상
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-            SizedBox(height: 16.0),
-
-            // 선택된 키워드 칩들
-            Container(
-              width: double.infinity,
-              child: Wrap(
-                spacing: 15.0,//chip 수평 간격
-                runSpacing: 12.0,//chip 수직 간격
+            if (showPopularKeywords) ...[
+              SizedBox(height: 8.0),
+              Wrap(
+                spacing: 15.0, // 칩 수평 간격
+                runSpacing: 12.0, // 칩 수직 간격
                 children: [
-                  Chip(
-                    label: Text(
-                        'Prisma',
-                        style: TextStyle(color: Colors.white, fontSize: 18.0)
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0), // 패딩 조정
-                    backgroundColor: Color(0xff002686), // 칩 배경색
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0), // 모서리 둥글게
-                      side: BorderSide.none, // 외곽선 제거
-                    )
-                  ),
-                  Chip(
-                    label: Text(
-                        '리액트',
-                        style: TextStyle(color: Colors.white, fontSize: 18.0)
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0), // 패딩 조정
-                    backgroundColor: Color(0xffBABABA), // 칩 배경색
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0), // 모서리 둥글게
-                      side: BorderSide.none, // 외곽선 제거
-                    )
-                  ),
-                  Chip(
-                    label: Text(
-                        '싱글톤 패턴',
-                        style: TextStyle(color: Colors.white, fontSize: 18.0)
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0), // 패딩 조정
-                    backgroundColor: Color(0xffBABABA), // 칩 배경색
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0), // 모서리 둥글게
-                      side: BorderSide.none, // 외곽선 제거
-                    )
-                  ),
-                  Chip(
-                    label: Text(
-                        'Node.js',
-                        style: TextStyle(color: Colors.white, fontSize: 18.0)
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0), // 패딩 조정
-                    backgroundColor: Color(0xffBABABA), // 칩 배경색
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0), // 모서리 둥글게
-                      side: BorderSide.none, // 외곽선 제거
-                    )
-                  ),
-                  Chip(
-                    label: Text(
-                        'MVC Pattern',
-                        style: TextStyle(color: Colors.white, fontSize: 18.0)
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0), // 패딩 조정
-                    backgroundColor: Color(0xff002686), // 칩 배경색
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0), // 모서리 둥글게
-                      side: BorderSide.none, // 외곽선 제거
-                    )
-                  ),
-                  Chip(
-                    label: Text(
-                        'Block Chain',
-                        style: TextStyle(color: Colors.white, fontSize: 18.0)
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0), // 패딩 조정
-                    backgroundColor: Color(0xffBABABA), // 칩 배경색
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0), // 모서리 둥글게
-                      side: BorderSide.none, // 외곽선 제거
-                    )
-                  ),
+                  // myKeywords 리스트에 있는 각 요소에 대해 칩 생성
+                  ...popularKeywords.map((keyword) {
+                    return Chip(
+                      label: Text(
+                        keyword,
+                        style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0), // 패딩 조정
+                      backgroundColor: Color(0xffBABABA), // 칩 배경색
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0), // 모서리 둥글게
+                        side: BorderSide.none, // 외곽선 제거
+                      ),
+                    );
+                  }).toList(),
                   IconButton(
                     icon: Icon(Icons.add, color: Color(0xff002686)), // '+' 아이콘
                     onPressed: () {
@@ -196,7 +91,68 @@ class _SearchState extends State<Search> {
                   ),
                 ],
               ),
+            ],
+
+            SizedBox(height: 16.0),
+
+            // 내 키워드
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  showMyKeywords = !showMyKeywords; // 클릭 시 표시 여부 토글
+                });
+              },
+              child: Container(
+                padding: EdgeInsets.all(12.0),
+                decoration: BoxDecoration(
+                  color: Color(0xff002686),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '내 키워드',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Icon(Icons.arrow_drop_down, color: Colors.white),
+                  ],
+                ),
+              ),
             ),
+            if (showMyKeywords) ...[
+              SizedBox(height: 8.0),
+              Wrap(
+                spacing: 15.0, // 칩 수평 간격
+                runSpacing: 12.0, // 칩 수직 간격
+                children: [
+                  // myKeywords 리스트에 있는 각 요소에 대해 칩 생성
+                  ...myKeywords.map((keyword) {
+                    return Chip(
+                      label: Text(
+                        keyword,
+                        style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0), // 패딩 조정
+                      backgroundColor: Color(0xffBABABA), // 칩 배경색
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0), // 모서리 둥글게
+                        side: BorderSide.none, // 외곽선 제거
+                      ),
+                    );
+                  }).toList(),
+                  IconButton(
+                    icon: Icon(Icons.add, color: Color(0xff002686)), // '+' 아이콘
+                    onPressed: () {
+                      // TBD : '+' 아이콘 클릭
+                    },
+                    color: Color(0xff002686), // 아이콘 배경색
+                    padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0), // 패딩 조정
+                    constraints: BoxConstraints(), // 크기 조정
+                  ),
+                ],
+              ),
+            ],
 
             SizedBox(height: 16.0),
 
