@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:defeefront/widgets/footer.dart';
 import 'package:defeefront/widgets/header.dart';
+import 'package:defeefront/screens/my/widgets/my_floating_button.dart';
 import 'package:defeefront/screens/my/widgets/my_content.dart';
 
 class MyPage extends StatefulWidget {
@@ -16,6 +17,7 @@ class _MyPageState extends State<MyPage> {
     return Scaffold(
       appBar: Header(),
       body: const MyContent(),
+      floatingActionButton: const MyFloatingButton(),
       bottomNavigationBar: Footer(),
     );
   }
