@@ -8,10 +8,21 @@ class DefeeThemeColors {
   static const Color text = Color(0xff212121);
 }
 
-class DefeeThemeSizes<double> {
-  static const borderRadius = 20.0;
-  static const padding = 8.0;
-  static const margin = 8.0;
+class DefeeThemeSizes {
+  // Border radius constants
+  static const double borderRadiusValue = 20.0;
+  static BorderRadiusGeometry get borderRadius =>
+      BorderRadius.circular(borderRadiusValue);
+  static Radius get radius => Radius.circular(borderRadiusValue);
+
+  // Padding constants
+  static const double padding = 8.0;
+  static EdgeInsets get thinPadding => EdgeInsets.all(padding);
+  static EdgeInsets get thickPadding => EdgeInsets.all(padding * 2);
+
+  // Margin constants
+  static const double margin = 8.0;
+  static EdgeInsets get marginInsets => EdgeInsets.all(margin);
 }
 
 class DefeeTextStyles {
@@ -63,7 +74,7 @@ class AppTheme {
     bottomSheetTheme: BottomSheetThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(DefeeThemeSizes.borderRadius),
+          top: DefeeThemeSizes.radius,
         ),
       ),
       modalBackgroundColor: DefeeThemeColors.background,
@@ -71,7 +82,7 @@ class AppTheme {
     ),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(DefeeThemeSizes.borderRadius),
+        borderRadius: DefeeThemeSizes.borderRadius,
       ),
       barrierColor: Colors.black.withOpacity(0.5),
       backgroundColor: DefeeThemeColors.background,
