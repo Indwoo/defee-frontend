@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 
-class DefeeThemeColors {
-  static const Color primary = Color(0xff002686);
-  static const Color secondary = Color(0xff85A0E4);
-  static const Color background = Color(0xffffffff);
-  static const Color disabled = Color(0xffBABABA);
-  static const Color text = Color(0xff212121);
+// colors
+class DefeeColors {
+  static const blue = Color(0xff002686);
+  static const white = Color(0xffffffff);
+  static const black = Color(0xff000000);
+  static const lightBlue = Color(0xff85A0E4);
+  static const grey = Color(0xffBABABA);
+  static const blackopacity = Color(0x44000000);
+  static const red = Color(0xffFF0000);
 }
 
+// sizes
 class DefeeThemeSizes {
   // Border radius constants
   static const double borderRadiusValue = 20.0;
   static BorderRadiusGeometry get borderRadius =>
       BorderRadius.circular(borderRadiusValue);
   static Radius get radius => Radius.circular(borderRadiusValue);
+  static BorderRadiusGeometry get primaryBorderRadius =>
+      BorderRadius.circular(borderRadiusValue / 2);
 
   // Padding constants
   static const double padding = 8.0;
@@ -25,77 +31,101 @@ class DefeeThemeSizes {
   static EdgeInsets get marginInsets => EdgeInsets.all(margin);
 }
 
+// text styles
 class DefeeTextStyles {
   static const TextStyle bodySmall = TextStyle(
     fontFamily: "Pretendard",
     fontSize: 14,
-    color: DefeeThemeColors.text,
+    color: DefeeColors.black,
   );
 
   static const TextStyle bodyMedium = TextStyle(
     fontFamily: "Pretendard",
     fontSize: 18,
-    color: DefeeThemeColors.text,
+    color: DefeeColors.black,
   );
 
   static const TextStyle bodyLarge = TextStyle(
     fontFamily: "Pretendard",
     fontSize: 22,
-    color: DefeeThemeColors.text,
+    color: DefeeColors.black,
+  );
+
+  static const TextStyle onPrimaryLarge = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 22,
+    color: DefeeColors.white,
   );
 
   static const TextStyle titleMedium = TextStyle(
     fontFamily: "Pretendard",
     fontSize: 24,
     fontWeight: FontWeight.bold,
-    color: DefeeThemeColors.primary,
+    color: DefeeColors.blue,
+  );
+
+  static const TextStyle menuMedium = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 20,
+    color: DefeeColors.black,
+  );
+
+  static const TextStyle hint = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 14,
+    color: DefeeColors.grey,
   );
 }
 
+// themes
 class AppTheme {
-  static ThemeData lightTheme = ThemeData(
-    primarySwatch: Colors.blue,
-    textTheme: TextTheme(
-      bodySmall: DefeeTextStyles.bodySmall,
-      bodyMedium: DefeeTextStyles.bodyMedium,
-      bodyLarge: DefeeTextStyles.bodyLarge,
-      titleMedium: DefeeTextStyles.titleMedium,
-    ),
-    appBarTheme: AppBarTheme(
-      backgroundColor: DefeeThemeColors.background,
-      titleTextStyle: DefeeTextStyles.titleMedium,
-    ),
-    scaffoldBackgroundColor: DefeeThemeColors.background,
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: DefeeThemeColors.secondary,
-      splashColor: DefeeThemeColors.primary,
-      hoverColor: DefeeThemeColors.primary,
-    ),
-    bottomSheetTheme: BottomSheetThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: DefeeThemeSizes.radius,
+  static ThemeData lightTheme = themeData(lightColorScheme);
+
+  static ThemeData themeData(ColorScheme colorScheme) {
+    return ThemeData(
+      colorScheme: colorScheme,
+      textTheme: TextTheme(
+        bodySmall: DefeeTextStyles.bodySmall,
+        bodyMedium: DefeeTextStyles.bodyMedium,
+        bodyLarge: DefeeTextStyles.bodyLarge,
+        titleMedium: DefeeTextStyles.titleMedium,
+      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: colorScheme.surface,
+        titleTextStyle: DefeeTextStyles.titleMedium,
+      ),
+      scaffoldBackgroundColor: colorScheme.surface,
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: colorScheme.secondary,
+        splashColor: colorScheme.primary,
+        hoverColor: colorScheme.primary,
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: DefeeThemeSizes.radius,
+          ),
+        ),
+        modalBackgroundColor: colorScheme.surface,
+        modalBarrierColor: colorScheme.surfaceDim,
+      ),
+      dialogTheme: DialogTheme(
+        shape: RoundedRectangleBorder(
+          borderRadius: DefeeThemeSizes.borderRadius,
+        ),
+        barrierColor: colorScheme.surfaceDim,
+        backgroundColor: colorScheme.surface,
+        titleTextStyle: DefeeTextStyles.bodyMedium,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: colorScheme.onSurface,
+          overlayColor: colorScheme.secondary,
+          padding: EdgeInsets.symmetric(vertical: 16),
         ),
       ),
-      modalBackgroundColor: DefeeThemeColors.background,
-      modalBarrierColor: Colors.black.withOpacity(0.5),
-    ),
-    dialogTheme: DialogTheme(
-      shape: RoundedRectangleBorder(
-        borderRadius: DefeeThemeSizes.borderRadius,
-      ),
-      barrierColor: Colors.black.withOpacity(0.5),
-      backgroundColor: DefeeThemeColors.background,
-      titleTextStyle: DefeeTextStyles.bodyMedium,
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        foregroundColor: DefeeThemeColors.text,
-        overlayColor: DefeeThemeColors.secondary,
-        padding: EdgeInsets.symmetric(vertical: 16),
-      ),
-    ),
-  );
+    );
+  }
 
   static ThemeData darkTheme = ThemeData(
     primarySwatch: Colors.blueGrey,
@@ -116,5 +146,19 @@ class AppTheme {
         color: Colors.white,
       ),
     ),
+  );
+
+  static const ColorScheme lightColorScheme = ColorScheme(
+    primary: DefeeColors.blue,
+    onPrimary: DefeeColors.white,
+    secondary: DefeeColors.lightBlue,
+    onSecondary: DefeeColors.white,
+    surface: DefeeColors.white,
+    onSurface: DefeeColors.black,
+    onSurfaceVariant: DefeeColors.grey,
+    error: DefeeColors.red,
+    onError: DefeeColors.white,
+    surfaceDim: DefeeColors.blackopacity,
+    brightness: Brightness.light,
   );
 }
