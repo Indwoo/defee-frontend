@@ -8,7 +8,7 @@ class Footer extends StatelessWidget {
     final String? currentRoute = ModalRoute.of(context)?.settings.name;
 
     return Container(
-      color: Colors.grey[850],
+      color: Theme.of(context).colorScheme.surfaceContainer,
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -70,7 +70,7 @@ class Footer extends StatelessWidget {
               decoration: isActive
                   ? BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: Colors.white38,
+                      color: Theme.of(context).colorScheme.secondaryContainer,
                     )
                   : null,
               child: Column(
@@ -78,7 +78,7 @@ class Footer extends StatelessWidget {
                 children: [
                   Icon(
                     icon,
-                    size: 20,
+                    size: 28,
                     color: isActive ? Colors.white : Colors.white70,
                   ),
                   const SizedBox(height: 4),

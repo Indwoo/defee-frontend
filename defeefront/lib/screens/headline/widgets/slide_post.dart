@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:defeefront/themes/app_theme.dart';
 
 class SlidePost extends StatelessWidget {
   const SlidePost({super.key});
@@ -30,7 +31,7 @@ class SlidePost extends StatelessWidget {
               backgroundColor: Color.fromARGB(1, 186, 186, 186)),
           child: const Text(
             "전체 포스트 컨텐츠",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: DefeeColors.white),
           ),
         ),
         SizedBox(height: 10),
@@ -51,7 +52,7 @@ class SlideItem extends StatelessWidget {
     return Container(
         width: 380,
         margin: const EdgeInsets.only(right: 20),
-        padding: const EdgeInsets.all(16),
+        padding: DefeeThemeSizes.thickPadding,
         decoration: BoxDecoration(
           color: Color.fromARGB(139, 129, 129, 129),
           borderRadius: BorderRadius.circular(12),
@@ -64,10 +65,7 @@ class SlideItem extends StatelessWidget {
               children: [
                 Text(
                   "미새문지",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                  style: DefeeTextStyles.onPrimaryMedium,
                 ),
                 SizedBox(width: 5),
                 Image(
@@ -78,7 +76,7 @@ class SlideItem extends StatelessWidget {
             ),
             Text(
               "소프트웨어 품질 관리",
-              style: TextStyle(fontSize: 15, color: Colors.white),
+              style: DefeeTextStyles.onPrimarySmall,
             )
           ],
         ));

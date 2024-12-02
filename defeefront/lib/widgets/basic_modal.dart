@@ -1,3 +1,4 @@
+import 'package:defeefront/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class BasicModal extends StatelessWidget {
@@ -26,7 +27,7 @@ class BasicModal extends StatelessWidget {
           if (title != null && title!.isNotEmpty)
             Text(
               title!,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: DefeeTextStyles.bodyMedium,
             ),
           SizedBox(height: 40),
           SizedBox(height: 100, child: child),

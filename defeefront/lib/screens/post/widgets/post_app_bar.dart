@@ -1,3 +1,4 @@
+import 'package:defeefront/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart'; // share_plus 패키지 추가
@@ -39,10 +40,7 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 child: Text(
                   url,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.black,
-                  ),
+                  style: DefeeTextStyles.bodySmall,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -105,7 +103,7 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
                 offset: const Offset(0, -10),
                 child: const Text(
                   'AI',
-                  style: TextStyle(fontSize: 10, color: Colors.black),
+                  style: DefeeTextStyles.bodyTiny,
                 ),
               ),
             ],

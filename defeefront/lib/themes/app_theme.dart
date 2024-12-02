@@ -7,6 +7,7 @@ class DefeeColors {
   static const black = Color(0xff000000);
   static const lightBlue = Color(0xff85A0E4);
   static const grey = Color(0xffBABABA);
+  static const surfaceContainerGrey = Color(0xff646464);
   static const blackopacity = Color(0x44000000);
   static const red = Color(0xffFF0000);
 }
@@ -33,6 +34,11 @@ class DefeeThemeSizes {
 
 // text styles
 class DefeeTextStyles {
+  static const TextStyle bodyTiny = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 10,
+    color: DefeeColors.black,
+  );
   static const TextStyle bodySmall = TextStyle(
     fontFamily: "Pretendard",
     fontSize: 14,
@@ -49,6 +55,18 @@ class DefeeTextStyles {
     fontFamily: "Pretendard",
     fontSize: 22,
     color: DefeeColors.black,
+  );
+
+  static const TextStyle onPrimarySmall = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 18,
+    color: DefeeColors.white,
+  );
+
+  static const TextStyle onPrimaryMedium = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 20,
+    color: DefeeColors.white,
   );
 
   static const TextStyle onPrimaryLarge = TextStyle(
@@ -72,8 +90,14 @@ class DefeeTextStyles {
 
   static const TextStyle hint = TextStyle(
     fontFamily: "Pretendard",
-    fontSize: 14,
+    fontSize: 18,
     color: DefeeColors.grey,
+  );
+
+  static const TextStyle hintSmall = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 14,
+    color: DefeeColors.surfaceContainerGrey,
   );
 }
 
@@ -153,7 +177,10 @@ class AppTheme {
     onPrimary: DefeeColors.white,
     secondary: DefeeColors.lightBlue,
     onSecondary: DefeeColors.white,
+    secondaryContainer: DefeeColors.grey,
+    onSecondaryContainer: DefeeColors.white,
     surface: DefeeColors.white,
+    surfaceContainer: DefeeColors.surfaceContainerGrey,
     onSurface: DefeeColors.black,
     onSurfaceVariant: DefeeColors.grey,
     error: DefeeColors.red,
