@@ -1,73 +1,55 @@
+import 'package:defeefront/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:defeefront/screens/my/widgets/my_menu.dart';
 import 'package:defeefront/screens/my/widgets/my_post.dart';
 
-class MyContent extends StatefulWidget {
-  const MyContent({Key? key}) : super(key: key);
+class MyContent extends StatelessWidget {
+  final List<MyMenuItem> folders;
+  final List<String> keywords;
 
-  @override
-  State<MyContent> createState() => _MyContentState();
-}
+  const MyContent({
+    Key? key,
+    required this.folders,
+    required this.keywords,
+  }) : super(key: key);
 
-class _MyContentState extends State<MyContent> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            MyMenu(
-              title: "스크랩",
-              items: [
-                MyMenuItem(title: "저장", isFolder: true),
-                MyMenuItem(title: "자료구조", isFolder: true),
-                MyMenuItem(title: "면접", isFolder: true),
-              ],
-              onPressed: (title, isFolder) {
-                if (isFolder) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyPost(folderName: title),
-                    ),
-                  );
-                } else {
-                  // 키워드 검색 로직 추가
-                  print("키워드 $title 검색 실행");
-                }
-              },
-            ),
-            SizedBox(height: 16),
-            MyMenu(
-              title: "키워드",
-              items: [
-                MyMenuItem(title: "AWS", isFolder: false),
-                MyMenuItem(title: "Python", isFolder: false),
-                MyMenuItem(title: "React", isFolder: false),
-                MyMenuItem(title: "AWS", isFolder: false),
-                MyMenuItem(title: "Python", isFolder: false),
-                MyMenuItem(title: "React", isFolder: false),
-                MyMenuItem(title: "AWS", isFolder: false),
-                MyMenuItem(title: "Python", isFolder: false),
-                MyMenuItem(title: "React", isFolder: false),
-              ],
-              onPressed: (title, isFolder) {
-                if (isFolder) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyPost(folderName: title),
-                    ),
-                  );
-                } else {
-                  // 키워드 검색 로직 추가
-                  print("키워드 $title 검색 실행");
-                }
-              },
-            ),
-          ],
-        ),
+    return Padding(
+      padding: DefeeThemeSizes.thickPadding,
+      child: Column(
+        children: [
+          MyMenu(
+            title: "스크랩",
+            items: folders,
+            onPressed: (title, isFolder) {
+              if (isFolder) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyPost(folderName: title),
+                  ),
+                );
+              }
+            },
+          ),
+          SizedBox(height: 16),
+          Divider(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+            thickness: 1,
+          ),
+          MyMenu(
+            title: "키워드",
+            items: keywords
+                .map((keyword) => MyMenuItem(title: keyword, isFolder: false))
+                .toList(),
+            onPressed: (title, isFolder) {
+              if (!isFolder) {
+                print("키워드 $title 검색 실행");
+              }
+            },
+          ),
+        ],
       ),
     );
   }

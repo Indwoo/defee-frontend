@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:defeefront/themes/app_theme.dart';
 
 class MyMenu extends StatelessWidget {
   final String title;
@@ -17,25 +18,18 @@ class MyMenu extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
             title,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
           ),
         ),
         // 아이템 그리드
         Container(
           decoration: BoxDecoration(
-            color: Color(0xff002686),
-            borderRadius: BorderRadius.circular(10),
-          ),
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: DefeeThemeSizes.primaryBorderRadius),
           child: GridView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 5,
-              // mainAxisSpacing: 12,
-              // crossAxisSpacing: 12,
               childAspectRatio: 1,
             ),
             itemCount: items.length,
@@ -68,23 +62,17 @@ class MyMenu extends StatelessWidget {
             child: item.isFolder
                 ? Icon(
                     Icons.folder,
-                    color: Colors.white,
+                    color: DefeeColors.white,
                     size: 36,
                   )
-                : Text(
-                    item.title.substring(0, 1).toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                : Text(item.title.substring(0, 1).toUpperCase(),
+                    style: DefeeTextStyles.onPrimaryLarge),
           ),
         ),
         Text(
           item.title,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontSize: 10, color: Colors.white),
+          style: TextStyle(fontSize: 10, color: DefeeColors.white),
         ),
       ],
     );
