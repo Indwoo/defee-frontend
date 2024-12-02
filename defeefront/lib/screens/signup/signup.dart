@@ -1,4 +1,6 @@
 import 'package:defeefront/widgets/input_box.dart';
+import 'package:defeefront/widgets/input_btn_box.dart';
+import 'package:defeefront/widgets/input_pw_box.dart';
 import 'package:flutter/material.dart';
 
 class Signup extends StatefulWidget {
@@ -13,6 +15,7 @@ class _SignupState extends State<Signup> {
   bool _isConfirmPasswordVisible = false;
 
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController codeController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
@@ -46,17 +49,25 @@ class _SignupState extends State<Signup> {
                 SizedBox(height: 30),
               ],
             ),
-            InputBox(
+            InputBtnBox(
               labelText: "E-Mail",
               controller: emailController,
+              buttonText: "확인",
             ),
             const SizedBox(height: 10),
-            InputBox(
+            InputBtnBox(
+              labelText: "Code",
+              controller: codeController,
+              buttonText: "인증",
+            ),
+            const SizedBox(height: 10),
+            InputBtnBox(
               labelText: "Username",
               controller: usernameController,
+              buttonText: "확인",
             ),
             const SizedBox(height: 10),
-            InputBox(
+            InputPwBox(
               labelText: "Password",
               isPassword: true,
               isPasswordVisible: _isPasswordVisible,
@@ -68,7 +79,7 @@ class _SignupState extends State<Signup> {
               controller: passwordController,
             ),
             const SizedBox(height: 10),
-            InputBox(
+            InputPwBox(
               labelText: "Confirm",
               isPassword: true,
               isPasswordVisible: _isConfirmPasswordVisible,
