@@ -1,3 +1,4 @@
+import 'package:defeefront/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class Footer extends StatelessWidget {
@@ -66,11 +67,11 @@ class Footer extends StatelessWidget {
           return GestureDetector(
             onTap: () => Navigator.pushNamed(context, route),
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),
               decoration: isActive
                   ? BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Theme.of(context).colorScheme.secondaryContainer,
+                      borderRadius: DefeeThemeSizes.borderRadius,
+                      color: Theme.of(context).colorScheme.secondary,
                     )
                   : null,
               child: Column(
@@ -79,14 +80,18 @@ class Footer extends StatelessWidget {
                   Icon(
                     icon,
                     size: 28,
-                    color: isActive ? Colors.white : Colors.white70,
+                    color: isActive
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onSurface,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     label,
                     style: TextStyle(
                       fontSize: 14,
-                      color: isActive ? Colors.white : Colors.white70,
+                      color: isActive
+                          ? Theme.of(context).colorScheme.onSecondary
+                          : Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                 ],

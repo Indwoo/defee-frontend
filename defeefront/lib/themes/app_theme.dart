@@ -5,11 +5,10 @@ class DefeeColors {
   static const blue = Color(0xff002686);
   static const white = Color(0xffffffff);
   static const black = Color(0xff000000);
-  static const lightBlue = Color(0xff85A0E4);
+  static const lightBlue = Color(0xff8B8FA8);
   static const grey = Color(0xffBABABA);
-  static const surfaceContainerGrey = Color(0xff646464);
-  static const blackopacity = Color(0x44000000);
-  static const red = Color(0xffFF0000);
+  static const surfaceContainerGrey = Color(0xffeeedf5);
+  static const red = Color(0xffba1a1a);
 }
 
 // sizes
@@ -18,9 +17,12 @@ class DefeeThemeSizes {
   static const double borderRadiusValue = 20.0;
   static BorderRadiusGeometry get borderRadius =>
       BorderRadius.circular(borderRadiusValue);
-  static Radius get radius => Radius.circular(borderRadiusValue);
   static BorderRadiusGeometry get primaryBorderRadius =>
       BorderRadius.circular(borderRadiusValue / 2);
+  static BorderRadiusGeometry get chipBorderRadius =>
+      BorderRadius.circular(borderRadiusValue * 2);
+
+  static Radius get radius => Radius.circular(borderRadiusValue);
 
   // Padding constants
   static const double padding = 8.0;
@@ -59,7 +61,7 @@ class DefeeTextStyles {
 
   static const TextStyle onPrimarySmall = TextStyle(
     fontFamily: "Pretendard",
-    fontSize: 18,
+    fontSize: 14,
     color: DefeeColors.white,
   );
 
@@ -72,6 +74,30 @@ class DefeeTextStyles {
   static const TextStyle onPrimaryLarge = TextStyle(
     fontFamily: "Pretendard",
     fontSize: 22,
+    color: DefeeColors.white,
+  );
+
+  static const TextStyle onSurfaceSmall = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 14,
+    color: Color(0xff1a1b21),
+  );
+
+  static const TextStyle onSurfaceMedium = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 20,
+    color: Color(0xff1a1b21),
+  );
+
+  static const TextStyle onSurfaceLarge = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 22,
+    color: Color(0xff1a1b21),
+  );
+
+  static const TextStyle onSecondarySmall = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 14,
     color: DefeeColors.white,
   );
 
@@ -115,7 +141,7 @@ class AppTheme {
         titleMedium: DefeeTextStyles.titleMedium,
       ),
       appBarTheme: AppBarTheme(
-        backgroundColor: colorScheme.surface,
+        backgroundColor: colorScheme.surfaceContainer,
         titleTextStyle: DefeeTextStyles.titleMedium,
       ),
       scaffoldBackgroundColor: colorScheme.surface,
@@ -177,15 +203,16 @@ class AppTheme {
     onPrimary: DefeeColors.white,
     secondary: DefeeColors.lightBlue,
     onSecondary: DefeeColors.white,
-    secondaryContainer: DefeeColors.grey,
-    onSecondaryContainer: DefeeColors.white,
-    surface: DefeeColors.white,
-    surfaceContainer: DefeeColors.surfaceContainerGrey,
-    onSurface: DefeeColors.black,
-    onSurfaceVariant: DefeeColors.grey,
+    secondaryContainer: Color(0xffd1d8ff),
+    onSecondaryContainer: Color(0xff384165),
+    surface: Color(0xfffbf8ff),
+    surfaceContainer: Color(0xffeeedf5),
+    onSurface: Color(0xff1a1b21),
     error: DefeeColors.red,
     onError: DefeeColors.white,
-    surfaceDim: DefeeColors.blackopacity,
+    surfaceDim: Color(0x44121319),
+    outline: Color(0xff757683),
+    outlineVariant: Color(0xffc5c5d4),
     brightness: Brightness.light,
   );
 }

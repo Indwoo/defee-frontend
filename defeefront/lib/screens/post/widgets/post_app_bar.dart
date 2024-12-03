@@ -33,14 +33,14 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
               child: Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(12.0),
                 ),
                 child: Text(
                   url,
-                  style: DefeeTextStyles.bodySmall,
+                  style: DefeeTextStyles.onSecondarySmall,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -128,7 +128,7 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget _folderIcon(String label) {
     return Column(
       children: [
-        Icon(Icons.folder, size: 50, color: Colors.blue),
+        Icon(Icons.folder, size: 50, color: DefeeColors.blue),
         SizedBox(height: 5),
         Text(label),
       ],
@@ -137,8 +137,8 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   Widget _addFolderIcon() {
     return Column(
-      children: [
-        Icon(Icons.add_circle_outline, size: 50, color: Colors.grey),
+      children: const [
+        Icon(Icons.add_circle_outline, size: 50, color: DefeeColors.grey),
         SizedBox(height: 5),
         Text("추가"),
       ],

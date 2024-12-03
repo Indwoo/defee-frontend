@@ -124,7 +124,7 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
       },
       child: Icon(
         Icons.add,
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: Theme.of(context).colorScheme.onSecondary,
       ),
     );
   }

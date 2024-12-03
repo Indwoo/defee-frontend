@@ -11,7 +11,7 @@ class Category extends StatelessWidget {
       width: double.infinity,
       alignment: Alignment.center,
       child: DefaultTextStyle(
-        style: DefeeTextStyles.hintSmall,
+        style: DefeeTextStyles.onSurfaceSmall,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: const [
