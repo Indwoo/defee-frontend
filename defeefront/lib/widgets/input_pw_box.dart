@@ -12,7 +12,6 @@ class InputPwBox extends StatelessWidget {
     required this.isPasswordVisible,
     this.togglePasswordVisibility,
     this.controller,
-    required bool isPassword,
   });
 
   @override
@@ -37,22 +36,23 @@ class InputPwBox extends StatelessWidget {
           child: TextFormField(
             controller: controller,
             obscureText: !isPasswordVisible,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.symmetric(vertical: 15.0),
               isDense: true,
-              border: const UnderlineInputBorder(
+              border: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Color.fromARGB(255, 97, 97, 97),
                 ),
               ),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                ),
-                onPressed: togglePasswordVisibility,
-              ),
             ),
           ),
+        ),
+        const SizedBox(width: 10), // 입력창과 아이콘 간의 간격
+        IconButton(
+          icon: Icon(
+            isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+          ),
+          onPressed: togglePasswordVisibility,
         ),
       ],
     );
