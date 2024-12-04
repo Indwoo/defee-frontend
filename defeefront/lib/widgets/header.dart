@@ -28,9 +28,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         headerText,
         style: TextStyle(
-          color: Colors.indigo[900],
-          fontWeight: FontWeight.bold,
-          fontSize: 24,
+          color: Theme.of(context).colorScheme.primary,
         ),
       ),
       backgroundColor: Colors.white,
@@ -39,7 +37,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           icon: Icon(
             Icons.notifications,
-            color: Colors.indigo[900],
+            color: Theme.of(context).colorScheme.primary,
           ),
           onPressed: () {
             print("알림 아이콘 클릭됨");
@@ -48,7 +46,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           icon: Icon(
             Icons.menu,
-            color: Colors.indigo[900],
+            color: Theme.of(context).colorScheme.primary,
           ),
           onPressed: () {
             print("목록 아이콘 클릭됨");
