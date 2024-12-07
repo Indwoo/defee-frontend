@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
-class InputBox extends StatelessWidget {
+class InputBtnBox extends StatelessWidget {
   final String labelText;
+  final String buttonText;
+  final bool isButtonEnabled;
+  final void Function()? onButtonPressed;
   final TextEditingController? controller;
 
-  const InputBox({
+  const InputBtnBox({
     super.key,
     required this.labelText,
+    required this.buttonText,
+    required this.isButtonEnabled,
+    this.onButtonPressed,
     this.controller,
   });
 
@@ -42,9 +48,23 @@ class InputBox extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          width: 50,
-        )
+        const SizedBox(width: 10),
+        ElevatedButton(
+          onPressed: isButtonEnabled ? onButtonPressed : null,
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size(70, 40),
+            backgroundColor: isButtonEnabled
+                ? const Color.fromARGB(255, 0, 122, 255)
+                : Colors.grey,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
+          child: Text(
+            buttonText,
+            style: const TextStyle(color: Colors.white, fontSize: 13),
+          ),
+        ),
       ],
     );
   }

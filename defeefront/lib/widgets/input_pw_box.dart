@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
-class InputBox extends StatelessWidget {
+class InputPwBox extends StatelessWidget {
   final String labelText;
+  final bool isPasswordVisible;
+  final void Function()? togglePasswordVisibility;
   final TextEditingController? controller;
 
-  const InputBox({
+  const InputPwBox({
     super.key,
     required this.labelText,
+    required this.isPasswordVisible,
+    this.togglePasswordVisibility,
     this.controller,
   });
 
@@ -31,6 +35,7 @@ class InputBox extends StatelessWidget {
         Expanded(
           child: TextFormField(
             controller: controller,
+            obscureText: !isPasswordVisible,
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical: 15.0),
               isDense: true,
@@ -42,9 +47,13 @@ class InputBox extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          width: 50,
-        )
+        const SizedBox(width: 10), // 입력창과 아이콘 간의 간격
+        IconButton(
+          icon: Icon(
+            isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+          ),
+          onPressed: togglePasswordVisibility,
+        ),
       ],
     );
   }

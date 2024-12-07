@@ -1,5 +1,6 @@
 import 'package:defeefront/widgets/basescreen.dart';
 import 'package:defeefront/widgets/input_box.dart';
+import 'package:defeefront/widgets/input_pw_box.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -50,9 +51,8 @@ class _LoginState extends State<Login> {
             ),
             const SizedBox(height: 20),
             // 비밀번호 입력 필드
-            InputBox(
+            InputPwBox(
               labelText: "Password",
-              isPassword: true,
               isPasswordVisible: _isPasswordVisible,
               togglePasswordVisibility: () {
                 setState(() {

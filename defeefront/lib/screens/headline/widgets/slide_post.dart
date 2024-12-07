@@ -13,7 +13,7 @@ class SlidePost extends StatelessWidget {
           height: 100,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: [
+            children: const [
               SlideItem(),
               SlideItem(),
               SlideItem(),

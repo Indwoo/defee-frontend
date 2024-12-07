@@ -5,21 +5,54 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+
+    String headerText;
+    switch (currentRoute) {
+      case '/search':
+        headerText = "검색";
+        break;
+      case '/recommend':
+        headerText = "추천";
+        break;
+      case '/my':
+        headerText = "MY";
+        break;
+      default:
+        headerText = "헤드라인";
+    }
+
     return AppBar(
       centerTitle: true,
-      leading: IconButton(
-        icon: Icon(
-          Icons.arrow_back_ios_new,
-          color: Theme.of(context).colorScheme.primary,
-          size: 24,
-        ),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
+      leading: null,
       title: Text(
-        "헤드라인",
+        headerText,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
+        ),
       ),
+      backgroundColor: Colors.white,
+      elevation: 0,
+      actions: [
+        IconButton(
+          icon: Icon(
+            Icons.notifications,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          onPressed: () {
+            print("알림 아이콘 클릭됨");
+          },
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.menu,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          onPressed: () {
+            print("목록 아이콘 클릭됨");
+          },
+        ),
+      ],
     );
   }
 
