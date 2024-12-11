@@ -24,7 +24,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       centerTitle: true,
-      leading: null,
+      leading: Container(),
       title: Text(
         headerText,
         style: TextStyle(
