@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/footer.dart';
 import '../../widgets/header.dart';
 import '../../screens/search/widgets/search_bar.dart';
+import '../search_result/search_result.dart';
 
 class Search extends StatefulWidget {
   // Stateless -> StatefulWidget으로 변경
@@ -44,12 +45,31 @@ class _SearchState extends State<Search> {
             MainSearchBar(
               key: searchBarKey, // GlobalKey 설정
               onKeywordSelected: (keyword) {
-                // 선택된 키워드를 처리할 수 있습니다.
-                print('Selected keyword: $keyword'); // 선택된 키워드 출력
+                // 검색어가 선택되면 검색 결과 페이지로 이동
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SearchResult(keyword: keyword), // 검색어를 SearchResult로 전달
+                  ),
+                );
               },
             ),
 
             SizedBox(height: 16.0),
+
+            ElevatedButton(
+              onPressed: () {
+                // 검색바의 텍스트를 가져와서 검색 결과 페이지로 전달
+                String keyword = searchBarKey.currentState?.searchController.text ?? '';
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SearchResult(keyword: keyword), // 검색어를 SearchResult로 전달
+                  ),
+                );
+              },
+              child: Text('검색'),
+            ),
 
             // 인기 키워드 드롭다운
             GestureDetector(
