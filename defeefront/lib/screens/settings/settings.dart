@@ -1,7 +1,6 @@
-import 'package:defeefront/widgets/footer.dart';
+import 'package:defeefront/screens/settings/widget/setting_content.dart';
 import 'package:flutter/material.dart';
 import 'package:defeefront/themes/app_theme.dart';
-import 'package:defeefront/widgets/header.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -9,19 +8,18 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(),
-      body: Container(
-        color: Theme.of(context).colorScheme.surfaceContainer,
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: DefeeThemeSizes.borderRadius,
-              ),
+      appBar: AppBar(title: Text("설정")),
+      body: SafeArea(
+        child: Container(
+          color: Theme.of(context).colorScheme.surface,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SettingContent(),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
