@@ -3,7 +3,7 @@ import 'package:defeefront/themes/app_theme.dart';
 
 class SettingMenu extends StatelessWidget {
   final String title;
-  final List<String> menuItems;
+  final List<Map<String, dynamic>> menuItems; // Map 구조로 변경
 
   SettingMenu({required this.title, required this.menuItems});
 
@@ -23,17 +23,18 @@ class SettingMenu extends StatelessWidget {
           ),
           child: Column(
             children: menuItems
-                .map((item) => Column(
+                .map((menuItem) => Column(
                       children: [
                         ListTile(
                           title: Text(
-                            item,
+                            menuItem['title'],
                             style: DefeeTextStyles.onPrimaryLarge,
                           ),
                           trailing: Icon(Icons.arrow_forward_ios,
                               color: Theme.of(context).colorScheme.onPrimary),
+                          onTap: menuItem['onTap'], // 각 메뉴의 onTap 함수 실행
                         ),
-                        if (menuItems.indexOf(item) != menuItems.length - 1)
+                        if (menuItems.indexOf(menuItem) != menuItems.length - 1)
                           Divider(),
                       ],
                     ))
