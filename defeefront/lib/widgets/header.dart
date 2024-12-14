@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:defeefront/screens/settings/settings.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
   const Header({super.key});
@@ -18,6 +19,9 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       case '/my':
         headerText = "MY";
         break;
+      case '/settings':
+        headerText = "설정";
+        break;
       default:
         headerText = "헤드라인";
     }
@@ -31,7 +35,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           color: Theme.of(context).colorScheme.primary,
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
       elevation: 0,
       actions: [
         IconButton(
@@ -49,7 +53,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             color: Theme.of(context).colorScheme.primary,
           ),
           onPressed: () {
-            print("목록 아이콘 클릭됨");
+            Navigator.pushNamed(context, '/settings');
           },
         ),
       ],
