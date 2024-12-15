@@ -57,20 +57,6 @@ class _SearchState extends State<Search> {
 
             SizedBox(height: 16.0),
 
-            ElevatedButton(
-              onPressed: () {
-                // 검색바의 텍스트를 가져와서 검색 결과 페이지로 전달
-                String keyword = searchBarKey.currentState?.searchController.text ?? '';
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SearchResult(keyword: keyword), // 검색어를 SearchResult로 전달
-                  ),
-                );
-              },
-              child: Text('검색'),
-            ),
-
             // 인기 키워드 드롭다운
             GestureDetector(
               onTap: () {
