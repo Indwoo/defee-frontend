@@ -26,6 +26,11 @@ class MainSearchBarState extends State<MainSearchBar> {
           },
         ),
       ),
+      onSubmitted: (value) {
+        if (widget.onKeywordSelected != null) {
+          widget.onKeywordSelected!(value); // 엔터 시 콜백 호출
+        }
+      },
     );
   }
 
