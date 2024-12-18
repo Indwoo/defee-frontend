@@ -5,6 +5,8 @@ import 'package:defeefront/screens/recommend/recommend.dart';
 import 'package:defeefront/screens/search/search.dart';
 import 'package:defeefront/screens/search_result/search_result.dart';
 import 'package:defeefront/screens/signup/signup.dart';
+import 'package:defeefront/screens/settings/settings.dart';
+
 import 'package:flutter/material.dart';
 
 final routes = {
@@ -15,4 +17,5 @@ final routes = {
   '/searchresult': (BuildContext context) => SearchResult(keyword: '',),
   '/recommend': (BuildContext context) => Recommend(),
   '/my': (BuildContext context) => const MyPage(),
+  '/settings': (BuildContext context) => Settings(),
 };
