@@ -1,6 +1,7 @@
 import 'package:defeefront/widgets/basescreen.dart';
 import 'package:defeefront/widgets/input_box.dart';
 import 'package:defeefront/widgets/input_pw_box.dart';
+import 'package:defeefront/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -31,14 +32,14 @@ class _LoginState extends State<Login> {
                   "{ }",
                   style: TextStyle(
                     fontSize: 50,
-                    color: Color.fromARGB(255, 0, 38, 134),
+                    color: DefeeColors.blue,
                   ),
                 ),
                 Text(
                   "defee;",
                   style: TextStyle(
                     fontSize: 30,
-                    color: Color.fromARGB(255, 0, 38, 134),
+                    color: DefeeColors.blue,
                   ),
                 ),
                 SizedBox(height: 30),
@@ -71,10 +72,8 @@ class _LoginState extends State<Login> {
                   onPressed: () {
                     Navigator.pushNamed(context, '/signup');
                   },
-                  child: const Text(
-                    "회원가입",
-                    style: TextStyle(color: Color.fromARGB(255, 97, 97, 97)),
-                  ),
+                  child: const Text("회원가입",
+                      style: TextStyle(color: DefeeColors.blue)),
                 ),
               ],
             ),
@@ -86,14 +85,14 @@ class _LoginState extends State<Login> {
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(300, 50),
-                backgroundColor: const Color.fromARGB(200, 0, 38, 134),
+                backgroundColor: Theme.of(context).colorScheme.primary,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: DefeeThemeSizes.primaryBorderRadius,
                 ),
               ),
               child: const Text(
                 "Log In",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: DefeeColors.white),
               ),
             ),
             const SizedBox(height: 10),
@@ -104,10 +103,11 @@ class _LoginState extends State<Login> {
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(300, 50),
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).colorScheme.surface,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  side: const BorderSide(color: Colors.black12),
+                  borderRadius: DefeeThemeSizes.primaryBorderRadius,
+                  side:
+                      const BorderSide(color: DefeeColors.surfaceContainerGrey),
                 ),
               ),
               icon: Image.asset(
@@ -117,7 +117,7 @@ class _LoginState extends State<Login> {
               ),
               label: const Text(
                 "SIGN IN WITH GOOGLE",
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: DefeeColors.black),
               ),
             ),
           ],
