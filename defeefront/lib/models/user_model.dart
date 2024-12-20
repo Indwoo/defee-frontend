@@ -24,10 +24,8 @@ class UserModel {
         'token': token,
       };
 
-  factory UserModel.fromStorage(Map<String, dynamic> json) {
-    return UserModel(
-      email: json['email'] ?? '',
-      token: json['token'] ?? '',
-    );
-  }
+  factory UserModel.fromStorage(Map<String, dynamic> json) => UserModel(
+        email: json['email'] ?? '',
+        token: json['token'] ?? '',
+      );
 }
