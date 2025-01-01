@@ -1,11 +1,15 @@
+import 'package:defeefront/screens/headline/widgets/slide_item.dart';
 import 'package:flutter/material.dart';
 import 'package:defeefront/themes/app_theme.dart';
 
 class SlidePost extends StatelessWidget {
-  const SlidePost({super.key});
+  final List<dynamic> posts;
+  const SlidePost({super.key, required this.posts});
 
   @override
   Widget build(BuildContext context) {
+    final limitPosts = posts.take(5).toList();
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -13,12 +17,9 @@ class SlidePost extends StatelessWidget {
           height: 100,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: const [
-              SlideItem(),
-              SlideItem(),
-              SlideItem(),
-              SlideItem(),
-            ],
+            children: limitPosts
+                .map<Widget>((post) => SlideItem(post: post))
+                .toList(),
           ),
         ),
         const SizedBox(height: 15),
@@ -42,44 +43,5 @@ class SlidePost extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class SlideItem extends StatelessWidget {
-  const SlideItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: 380,
-        margin: const EdgeInsets.only(right: 20),
-        padding: DefeeThemeSizes.thickPadding,
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainer,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        alignment: Alignment.center,
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  "미새문지",
-                  style: DefeeTextStyles.onSurfaceMedium,
-                ),
-                SizedBox(width: 5),
-                Image(
-                  width: 20,
-                  image: AssetImage("assets/images/velog.png"),
-                )
-              ],
-            ),
-            Text(
-              "소프트웨어 품질 관리",
-              style: DefeeTextStyles.onSurfaceSmall,
-            )
-          ],
-        ));
   }
 }
