@@ -5,7 +5,6 @@ import '../../widgets/footer.dart';
 import '../../widgets/header.dart';
 
 class SearchResult extends StatefulWidget {
-
   final String keyword; // 검색어를 저장할 변수
   const SearchResult({super.key, required this.keyword}); // 생성자에서 keyword를 받음
 
@@ -14,7 +13,6 @@ class SearchResult extends StatefulWidget {
 }
 
 class _SearchResult extends State<SearchResult> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +22,8 @@ class _SearchResult extends State<SearchResult> {
         child: Column(
           children: [
             TextField(
-              controller: TextEditingController(text: widget.keyword), // 전달받은 검색어를 텍스트 필드에 설정
+              controller: TextEditingController(
+                  text: widget.keyword), // 전달받은 검색어를 텍스트 필드에 설정
               decoration: InputDecoration(
                 labelText: '리액트',
                 prefixIcon: Icon(Icons.search),
@@ -35,9 +34,7 @@ class _SearchResult extends State<SearchResult> {
             SizedBox(height: 16.0),
 
             Popular(),
-            OtherPost(),
-
-
+            // OtherPost(),
           ],
         ),
       ),
@@ -45,4 +42,3 @@ class _SearchResult extends State<SearchResult> {
     );
   }
 }
-
