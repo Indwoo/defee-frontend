@@ -38,17 +38,24 @@ class _SearchState extends State<Search> {
     try {
       Dio dio = Dio();
       final response = await dio.get('http://localhost:8080/api/posts');
+      print(response.data);
 
       setState(() {
-        titles = response.data
-            .map<String>((post) => post['title'] ?? '제목 없음')
-            .toList();
-        isLoading = false; // 로딩 상태 해제
+        titles = List<String>.from(response.data.map((post) {
+          return post['title'] ?? '제목 없음';
+        }));
+        isLoading = false;
       });
+      print(titles);
     } catch (e) {
-      print('Error fetching titles: $e');
+      if (e is DioException) {
+        print('Error: ${e.response?.statusCode}');
+        print('Error Message: ${e.message}');
+      } else {
+        print('Unexpected Error: $e');
+      }
       setState(() {
-        isLoading = false; // 로딩 상태 해제
+        isLoading = false;
       });
     }
   }
