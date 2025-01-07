@@ -38,7 +38,6 @@ class _SearchState extends State<Search> {
     try {
       Dio dio = Dio();
       final response = await dio.get('http://localhost:8080/api/posts');
-      print(response.data);
 
       setState(() {
         titles = List<String>.from(response.data.map((post) {
@@ -46,7 +45,6 @@ class _SearchState extends State<Search> {
         }));
         isLoading = false;
       });
-      print(titles);
     } catch (e) {
       if (e is DioException) {
         print('Error: ${e.response?.statusCode}');
