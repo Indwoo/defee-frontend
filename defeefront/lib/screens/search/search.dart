@@ -69,13 +69,13 @@ class _SearchState extends State<Search> {
             //상단 검색 바
             MainSearchBar(
               key: searchBarKey, // GlobalKey 설정
-              onKeywordSelected: (keyword) {
+              onKeywordSelected: (results) {
                 // 검색어가 선택되면 검색 결과 페이지로 이동
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        SearchResult(keyword: keyword), // 검색어를 SearchResult로 전달
+                        SearchResult(results: results), // 검색어를 SearchResult로 전달
                   ),
                 );
               },
