@@ -2,7 +2,7 @@ import 'package:defeefront/screens/headline/widgets/other_post.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/basescreen.dart';
-
+import '../search/widgets/search_bar.dart';
 
 class SearchResult extends StatefulWidget {
   final String results; // 검색어를 저장할 변수
@@ -19,10 +19,10 @@ class _SearchResult extends State<SearchResult> {
   @override
   void initState() {
     super.initState();
-    fetchFilteredTitles();
+    fetchFilteredTitles(widget.results);
   }
 
-  Future<void> fetchFilteredTitles() async {
+  Future<void> fetchFilteredTitles(String keyword) async {
     try {
       Dio dio = Dio();
       final response = await dio.get('http://localhost:8080/api/posts');
@@ -61,32 +61,43 @@ class _SearchResult extends State<SearchResult> {
         child: isLoading
             ? const Center(child: CircularProgressIndicator())
             : filteredPosts.isEmpty
-            ? Center(
-          child: Text(
-            '검색 결과가 없습니다.',
-            style: TextStyle(fontSize: 16.0),
-          ),
-        )
-            : Column(
-          children: [
-            // 인기 포스트 (검색 결과의 첫 번째 항목)
-            if (filteredPosts.isNotEmpty)
-              GestureDetector(
-                onTap: () {
-                  final postUrl = filteredPosts[0]['url'];
-                  Navigator.pushNamed(
-                    context,
-                    '/post',
-                    arguments: postUrl,
-                  );
-                },
+                ? Center(
+                    child: Text(
+                      '검색 결과가 없습니다.',
+                      style: TextStyle(fontSize: 16.0),
+                    ),
+                  )
+                : Column(
+                    children: [
+                      MainSearchBar(
+                        onKeywordSelected: (newKeyword) {
+                          // 새로운 검색어가 입력되었을 때
+                          setState(() {
+                            isLoading = true;
+                            filteredPosts = [];
+                          });
+                          fetchFilteredTitles(newKeyword); // 새 검색어로 검색
+                        },
+                      ),
+                      const SizedBox(height: 20),
 
-              ),
-            const SizedBox(height: 20),
-            // 하단 나머지 포스트
-            OtherPost(posts: filteredPosts),
-          ],
-        ),
+                      // 인기 포스트 (검색 결과의 첫 번째 항목)
+                      if (filteredPosts.isNotEmpty)
+                        GestureDetector(
+                          onTap: () {
+                            final postUrl = filteredPosts[0]['url'];
+                            Navigator.pushNamed(
+                              context,
+                              '/post',
+                              arguments: postUrl,
+                            );
+                          },
+                        ),
+                      const SizedBox(height: 20),
+                      // 하단 나머지 포스트
+                      OtherPost(posts: filteredPosts),
+                    ],
+                  ),
       ),
     );
   }
