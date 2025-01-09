@@ -55,7 +55,7 @@ class _SearchResult extends State<SearchResult> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Search Results')),
+      appBar: AppBar(title: Text('검색 결과')),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Column(
