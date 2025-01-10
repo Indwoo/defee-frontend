@@ -308,26 +308,6 @@ class _SearchState extends State<Search> {
               color: Colors.grey,
             ),
 
-            Expanded(
-              child: isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : ListView.builder(
-                itemCount: titles.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      title: Text(
-                        titles[index],
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
 
           ],
         ),
