@@ -14,10 +14,12 @@ class SearchResult extends StatefulWidget {
 class _SearchResult extends State<SearchResult> {
   List<dynamic> filteredPosts = [];
   bool isLoading = true;
+  late String currentKeyword;
 
   @override
   void initState() {
     super.initState();
+    currentKeyword = widget.results;
     fetchFilteredTitles(widget.results);
   }
 
@@ -35,7 +37,7 @@ class _SearchResult extends State<SearchResult> {
                 post['title']
                     .toString()
                     .toLowerCase()
-                    .contains(widget.results.toLowerCase()))
+                    .contains(keyword.toLowerCase()))
             .toList();
         isLoading = false;
       });
@@ -67,6 +69,7 @@ class _SearchResult extends State<SearchResult> {
                   setState(() {
                     isLoading = true;
                     filteredPosts = [];
+                    currentKeyword = newKeyword;
                   });
                   fetchFilteredTitles(newKeyword); // 새 검색어로 검색
                 },
