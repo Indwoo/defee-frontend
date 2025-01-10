@@ -15,12 +15,14 @@ class _SearchResult extends State<SearchResult> {
   List<dynamic> filteredPosts = [];
   bool isLoading = true;
   late String currentKeyword;
+  late TextEditingController searchController;
 
   @override
   void initState() {
     super.initState();
     currentKeyword = widget.results;
-    fetchFilteredTitles(widget.results);
+    searchController = TextEditingController(text: widget.results);
+    fetchFilteredTitles(currentKeyword);
   }
 
   Future<void> fetchFilteredTitles(String keyword) async {
@@ -98,13 +100,10 @@ class _SearchResult extends State<SearchResult> {
                           arguments: postUrl,
                         );
                       },
-                      child: ListTile(
-                        title: Text(filteredPosts[0]['title'] ?? ''),
-                        subtitle: Text(filteredPosts[0]['summary'] ?? ''),
-                      ),
+                      child: OtherPost(posts: filteredPosts),
                     ),
                   const SizedBox(height: 20),
-                  OtherPost(posts: filteredPosts),
+
                 ],
               ),
             ),
